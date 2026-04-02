@@ -15,12 +15,23 @@
 // ============================================================================
 
 // Inclusão das bibliotecas padrão necessárias para entrada/saída, alocação de memória, manipulação de strings e tempo.
+#include <stdio.h>
+#include<stdlib.h>
+#include<string.h> // PARA strcspn()
 
 // --- Constantes Globais ---
 // Definem valores fixos para o número de territórios, missões e tamanho máximo de strings, facilitando a manutenção.
+#define TAM_STRING 20
+#define TAM_INT 10
+#define MAX_TROPAS 5
 
 // --- Estrutura de Dados ---
 // Define a estrutura para um território, contendo seu nome, a cor do exército que o domina e o número de tropas.
+struct Territorio {
+    char nome[TAM_STRING];
+    char corExercito[TAM_STRING];
+    int tropas[TAM_INT];
+};
 
 // --- Protótipos das Funções ---
 // Declarações antecipadas de todas as funções que serão usadas no programa, organizadas por categoria.
@@ -28,15 +39,56 @@
 // Funções de interface com o usuário:
 // Funções de lógica principal do jogo:
 // Função utilitária:
+void limparBufferEntrada(){
+    int c;
+    while((c = getchar()) != '\n' && c != EOF);
+}
 
 // --- Função Principal (main) ---
 // Função principal que orquestra o fluxo do jogo, chamando as outras funções em ordem.
 int main() {
     // 1. Configuração Inicial (Setup):
+    struct Territorio mapa[MAX_TROPAS];
+    int totalTropas = 0;
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
     // - Aloca a memória para o mapa do mundo e verifica se a alocação foi bem-sucedida.
     // - Preenche os territórios com seus dados iniciais (tropas, donos, etc.).
+    printf("==================================================================\n\n");
+    printf("--- Vamos cadastrar os 5 territorios iniciais do nosso mundo. ---\n\n");
+    for (totalTropas = 0; totalTropas < 5; totalTropas++) {
+        printf("--- Cadastrando território %d ---\n", totalTropas + 1);
+        
+        printf("Nome do território: ");
+        // Usamos %s para leitura simples. Para nomes com espaço, o ideal seria fgets.
+        fgets(mapa[totalTropas].nome, TAM_STRING, stdin);
+        
+        printf("Cor do exército (ex: Azul ou Verde): ");
+        fgets(mapa[totalTropas].corExercito, TAM_STRING, stdin);
+        
+        printf("Quantidade de Tropas: ");
+        scanf("%d", &mapa[totalTropas].tropas);
+
+        mapa[totalTropas].nome[strcspn(mapa[totalTropas].nome, "\n")] = '\0';
+        mapa[totalTropas].corExercito[strcspn(mapa[totalTropas].corExercito, "\n")] = '\0';
+
+        limparBufferEntrada();
+
+        printf("\n");
+        
+    }
+
+    printf("\nCadastro Inicial Concluído com Sucesso ===\n");
+
+    printf("==================================================================\n");
+    printf("                 MAPA DO MUNDO - ESTADO ATUAL\n");
+    printf("==================================================================\n");
+
+    for (totalTropas = 0; totalTropas < 5; totalTropas++) {
+
+        printf("ID: %d | Nome: %s | Cor: %s | Tropas: %d\n", 
+                totalTropas + 1, mapa[totalTropas].nome, mapa[totalTropas].corExercito, mapa[totalTropas].tropas);
+    }
     // - Define a cor do jogador e sorteia sua missão secreta.
 
     // 2. Laço Principal do Jogo (Game Loop):
