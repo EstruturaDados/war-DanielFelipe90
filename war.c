@@ -49,7 +49,7 @@ int main() {
     // 1. Configuração Inicial (Setup):
     struct Territorio mapa[MAX_TROPAS];
     int totalTropas = 0;
-    
+
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
     // - Aloca a memória para o mapa do mundo e verifica se a alocação foi bem-sucedida.
@@ -86,10 +86,10 @@ int main() {
 
     for (totalTropas = 0; totalTropas < 5; totalTropas++) {
 
-        printf("--- Território %d ---\n", totalTropas + 1);
-        printf("Nome: %s\n", mapa[totalTropas].nome);
-        printf("Cor: %s\n", mapa[totalTropas].corExercito);
-        printf("Tropas: %d\n\n", mapa[totalTropas].tropas);
+        printf("Território %d:\n", totalTropas + 1);
+        printf("  - Nome: %s\n", mapa[totalTropas].nome);
+        printf("  - Dominado por: Exercito %s\n", mapa[totalTropas].corExercito);
+        printf("  - Tropas: %d\n\n", mapa[totalTropas].tropas);
         
     }
     // - Define a cor do jogador e sorteia sua missão secreta.
