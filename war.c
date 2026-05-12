@@ -78,7 +78,9 @@ int main() {
         
     }
 
-    printf("\nCadastro Inicial Concluído com Sucesso ===\n");
+    printf("\nCadastro Inicial Concluído com Sucesso \n\n");
+    printf("\nPressione Enter para continuar...\n");
+    getchar(); // Aguarda o usuário pressionar Enter
 
     printf("==================================================================\n");
     printf("                 MAPA DO MUNDO - ESTADO ATUAL\n");
