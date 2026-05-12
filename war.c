@@ -22,7 +22,6 @@
 // --- Constantes Globais ---
 // Definem valores fixos para o número de territórios, missões e tamanho máximo de strings, facilitando a manutenção.
 #define TAM_STRING 20
-#define TAM_INT 10
 #define MAX_TROPAS 5
 
 // --- Estrutura de Dados ---
@@ -30,7 +29,7 @@
 struct Territorio {
     char nome[TAM_STRING];
     char corExercito[TAM_STRING];
-    int tropas[TAM_INT];
+    int tropas;
 };
 
 // --- Protótipos das Funções ---
@@ -50,9 +49,11 @@ int main() {
     // 1. Configuração Inicial (Setup):
     struct Territorio mapa[MAX_TROPAS];
     int totalTropas = 0;
+    
     // - Define o locale para português.
     // - Inicializa a semente para geração de números aleatórios com base no tempo atual.
     // - Aloca a memória para o mapa do mundo e verifica se a alocação foi bem-sucedida.
+
     // - Preenche os territórios com seus dados iniciais (tropas, donos, etc.).
     printf("==================================================================\n\n");
     printf("--- Vamos cadastrar os 5 territorios iniciais do nosso mundo. ---\n\n");
@@ -60,7 +61,6 @@ int main() {
         printf("--- Cadastrando território %d ---\n", totalTropas + 1);
         
         printf("Nome do território: ");
-        // Usamos %s para leitura simples. Para nomes com espaço, o ideal seria fgets.
         fgets(mapa[totalTropas].nome, TAM_STRING, stdin);
         
         printf("Cor do exército (ex: Azul ou Verde): ");
@@ -86,12 +86,16 @@ int main() {
 
     for (totalTropas = 0; totalTropas < 5; totalTropas++) {
 
-        printf("ID: %d | Nome: %s | Cor: %s | Tropas: %d\n", 
-                totalTropas + 1, mapa[totalTropas].nome, mapa[totalTropas].corExercito, mapa[totalTropas].tropas);
+        printf("--- Território %d ---\n", totalTropas + 1);
+        printf("Nome: %s\n", mapa[totalTropas].nome);
+        printf("Cor: %s\n", mapa[totalTropas].corExercito);
+        printf("Tropas: %d\n\n", mapa[totalTropas].tropas);
+        
     }
     // - Define a cor do jogador e sorteia sua missão secreta.
 
     // 2. Laço Principal do Jogo (Game Loop):
+    
     // - Roda em um loop 'do-while' que continua até o jogador sair (opção 0) ou vencer.
     // - A cada iteração, exibe o mapa, a missão e o menu de ações.
     // - Lê a escolha do jogador e usa um 'switch' para chamar a função apropriada:
