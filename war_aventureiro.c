@@ -208,9 +208,9 @@ void situacaoAtualMapa(const struct Territorio *mapa, int quantidade)
     printf("==================================================================\n");
     printf("                 SITUAÇÃO ATUAL DO MAPA\n");
     printf("==================================================================\n");
-    for (int i = 0; i < 5; i++)
+    for (int i = 0; i < quantidade; i++)
     {
-        printf("%d. %s (Exercito: %s) - Tropas: %d\n", i + 1, mapa[i].nome, mapa[i].corExercito, mapa[i].tropas);
+        printf("%d. %s (Exercito: %s - Tropas: %d)\n", i + 1, mapa[i].nome, mapa[i].corExercito, mapa[i].tropas);
     }
 }
 
